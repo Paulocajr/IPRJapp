@@ -6,12 +6,10 @@ import iprj.app.main.Tutorial_1;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.parse.LogInCallback;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
-
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -67,7 +65,7 @@ public class LoginActivity extends Activity {
                             finish();
                         } else {
                             Toast.makeText(getApplicationContext(),
-                                "Usu·rio incorreto/senha",
+                                "Usu√°rio incorreto/senha",
                                     Toast.LENGTH_LONG).show();
                         }
                     }
@@ -103,9 +101,5 @@ public class LoginActivity extends Activity {
         });
     }
 
-/*    @Override
-    public void onDestroy() {
-        stopService(new Intent(this, MessageService.class));
-        super.onDestroy();
-    }*/
+
 }
