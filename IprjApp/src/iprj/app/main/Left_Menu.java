@@ -1,7 +1,21 @@
 package iprj.app.main;
 
-import java.util.List;
 
+/*
+  * Left_menu.java
+  * Versão: <v2.0>
+  * Data de Criação : 19/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Politécnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Classe do Menu lateral, responsável pela parte gráfica
+  * Exibe a lista com os itens do menu,a foto do usuário e o nome do curso
+  * Todos os direitos reservados.
+ */
+ 
+ //Imports
+
+import java.util.List;
 import com.facebook.FacebookException;
 import com.facebook.Request;
 import com.facebook.Response;
@@ -11,7 +25,6 @@ import com.facebook.model.GraphUser;
 import com.facebook.widget.ProfilePictureView;
 import com.facebook.widget.WebDialog;
 import com.facebook.widget.WebDialog.OnCompleteListener;
-
 import iprj.app.fragments.AlunoOnlineFragment;
 import iprj.app.fragments.Biblioteca_Fragment;
 import iprj.app.fragments.Calendario_Fragment;
@@ -21,7 +34,6 @@ import iprj.app.fragments.Horario_Fragment;
 import iprj.app.fragments.Iprj_Fragment;
 import iprj.app.fragments.Moodle_Fragment;
 import iprj.app.fragments.Uerj_tk_Fragment;
-
 import com.iprjappteste.data.Curso;
 import com.iprjappteste.data.MySQLiteHelper;
 import com.iprjappteste.data.Periodos;
@@ -29,10 +41,8 @@ import com.iprjappteste.data.Usuario;
 import com.parse.Parse;
 import com.parse.ParseInstallation;
 import com.parse.ParsePush;
-
 import iprj.app.fragments.FragmentChangeActivity;
 import android.app.Activity;
-//import com.jeremyfeinstein.slidingmenu.example.fragments.ResponsiveUIActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -64,18 +74,12 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		
 
-		//if (savedInstanceState != null)
-		
-		//LeftRes = savedInstanceState.getInt("HomeRes");
-		  
     	rootView = inflater.inflate(R.layout.menu_1, container, false);    	    			   
     	// Get ListView object from xml
         listView = (ListView) rootView.findViewById(R.id.listView1);
         
-       Parse.initialize(this.getActivity(), "8FttRlqaAUPabxXzuLeTMbmgAA389L7oVbFaSqjj", "6sFwktakiPYSDg1NKzgP18yanSjlB9CQKFGUOShs");
-       ParseInstallation.getCurrentInstallation().saveInBackground();
-       
-       
+        Parse.initialize(this.getActivity(), "8FttRlqaAUPabxXzuLeTMbmgAA389L7oVbFaSqjj", "6sFwktakiPYSDg1NKzgP18yanSjlB9CQKFGUOShs");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
        
         final MySQLiteHelper db = new MySQLiteHelper(getActivity());
         List<Usuario> usuarios = db.getAllUsuario();
@@ -95,10 +99,9 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
    		    			  @Override
    		    			  public void onCompleted(GraphUser user, Response response) {
    		    				  
-   		    				  if (user != null) {  		    					  
-   		    				  	    			
-   		    				  
-   		    					}
+   		    				  if (user != null) { 	    					  
+   		    				  	    		
+   		    				 }
    		    			  }
    		    			}).executeAsync();
    		    		}
@@ -106,30 +109,30 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
    		  });  
       
     	
-  	      int listcounter=0;
-  	      Curso cn=cursos.get(listcounter);
-  	      Periodos per =periodos.get(listcounter);
-  	      Usuario user =usuarios.get(listcounter);
+  	  int listcounter=0;
+  	  Curso cn=cursos.get(listcounter);
+  	  Periodos per =periodos.get(listcounter);
+  	  Usuario user =usuarios.get(listcounter);
 
-  	      String nome1 = user.getTitle();
+  	  String nome1 = user.getTitle();
           String  curso = cn.getTitle();
           String nome_periodo = per.getTitle();
           String  periodo = per.getTitle();
           String id = user.getId_Facebook();
           
-          if(curso.equals("Engenharia de Computa��o")){
+          if(curso.equals("Engenharia de Computação")){
         	  
         	  channel = "Computacao";
-          }
+                }
             else {
             	
             	channel = "Mecanica";
-            }
+               }
           
-        // Defined Array values to show in ListView
+        // Array para os itens da ListView
           String[] values = new String[] { "Home", 
-                                         "Hor�rio",
-                                         "Calend�rio Acad�mico",
+                                         "Horário",
+                                         "Calendário Acadêmico",
                                          "Guia de Ramais",
                                          "Biblioteca", 
                                          "Uerj.tk", 
@@ -141,23 +144,9 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
                                          "Logout"
                                         };
              
-        // Define a new Adapter
-        // First parameter - Context
-        // Second parameter - Layout for the row
-        // Third parameter - ID of the TextView to which the data is written
-        // Forth - the Array of data
-        
-        Bundle bundle = getActivity().getIntent().getExtras();
-	    
-        if (bundle != null) {
-        	
-        	usuario = bundle.getString("Userid");
-        	nome = bundle.getString("User_name");
-        	
-        }
-        
-
-   	     TextView nome_user = (TextView) rootView.findViewById(R.id.textView1);
+   
+   // Definindos elementos do XML
+             TextView nome_user = (TextView) rootView.findViewById(R.id.textView1);
    	     nome_user.setText(nome1);   	     
 
    	     TextView nome_curso = (TextView) rootView.findViewById(R.id.textView2);
@@ -165,16 +154,15 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
    	     //nome_user.setText(nome);   	     
 
    	   
-        
+  // Carregando a  ListView a partir do arquivo XML      
          ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.getActivity(),
          android.R.layout.simple_list_item_1, android.R.id.text1, values);
 
-        
+ //Definindo a imagem do perfil do usuário
          ProfilePictureView profilePictureView;
-	 	 profilePictureView = (ProfilePictureView)rootView.findViewById(R.id.profile_picture);
-		 profilePictureView.setProfileId(id);		
-		 profilePictureView.getDrawingCache();
-		
+	 profilePictureView = (ProfilePictureView)rootView.findViewById(R.id.profile_picture);
+	 profilePictureView.setProfileId(id);		
+
          listView.setAdapter(adapter);         
          listView.setOnItemClickListener(new OnItemClickListener() {
         	 
@@ -182,10 +170,10 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
 			public void onItemClick(AdapterView<?> parent, View view,
               int position, long id) {
               
-             // ListView Clicked item index
-             int itemPosition     = position;
+             // index do item selecionado
+             int itemPosition  = position;
              
-             // ListView Clicked item value
+             // valor do item selecionado
              String  itemValue    = (String) listView.getItemAtPosition(position);
              Fragment newContent = null;
              switch (position) {
@@ -245,20 +233,22 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
             }
     });    
        				
-				return rootView;
+	return rootView;
 		       		
 	}
 	
 	
+// Método que envia o convite para o facebook do amigo selecionado a fim de fazer o download do app
+
 	 private void sendRequestDialog() {
+	 	
 	        Bundle params = new Bundle();
-	        params.putString("title", "Solicita��o de Aplicativo");
+	        params.putString("title", "Solicitação de Aplicativo");
 	        params.putString("message", "Experimente o IPRJapp");
 	        params.putString("link","https://play.google.com/store/apps/details?id=com.wb.goog.batman.brawler2013");
-	        //params.putString("to", "12343543,32423534");  // comma seperated list of facebook IDs to preset the recipients. If left out, it will show a Friend Picker.
 	        params.putString("data",
 	            "{\"badge_of_awesomeness\":\"1\"," +
-	            "\"social_karma\":\"5\"}");  // any additional data
+	            "\"social_karma\":\"5\"}");  
 
 	        WebDialog requestsDialog = (
 	            new WebDialog.RequestsDialogBuilder(this.getActivity(), Session.getActiveSession(), params))
@@ -266,16 +256,16 @@ public class Left_Menu extends Fragment implements OnItemClickListener{
 
 	                    @Override
 	                    public void onComplete(Bundle values, FacebookException error) {
-	                        // do something, e.g. show toast message
 	                    }
 
-						
 	                })
 	                .build();
 	        requestsDialog.show();
 	    }
 	
-	 
+// Método que exibe uma caixa de dialogo com informações do aplicativo
+// Mostra a versão do aplivativo e alguns elementos esátivos de texto
+
 public void sobre(){
 	    	
 	    	PackageInfo pInfo = null;
@@ -287,14 +277,14 @@ public void sobre(){
 			}
 	    	String version = pInfo.versionName;
 	    	AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity()); 
-	   	    alert.setMessage("Software desenvolvido por Paulo Cabral.\n" +
-	   	 		           "Vers�o:"+version+".\n" +
+	   	alert.setMessage("Software desenvolvido por Paulo Cabral.\n" +
+	   	 		           "Versão:"+version+".\n" +
 	   	 				   "Contato: paulocajr@live.com.\n" +
-	   	 		           "Agradecimentos ao colaborador e amigo Hamilton Assun��o.");
-	   	    alert.setTitle("Sobre");
+	   	 		           "Agradecimentos ao colaborador e amigo Hamilton Assunção.");
+	   	 alert.setTitle("Sobre");
 	   	 
 	   	 
-	   	   alert.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
+	   	 alert.setNegativeButton("Fechar", new DialogInterface.OnClickListener() {
 	   	     @Override
 	   	     public void onClick(DialogInterface dialog, int id) {
 	   	         dialog.dismiss();
@@ -307,6 +297,7 @@ public void sobre(){
 	
 
 
+// Método que faz a troca dos Fragments
 private void switchFragment(Fragment fragment) {
 	
 		if (getActivity() == null)
@@ -315,52 +306,32 @@ private void switchFragment(Fragment fragment) {
 		if (getActivity() instanceof FragmentChangeActivity) {
 			FragmentChangeActivity fca = (FragmentChangeActivity) getActivity();
 			fca.switchContent(fragment);
-		} //else if (getActivity() instanceof ResponsiveUIActivity) {
-			//ResponsiveUIActivity ra = (ResponsiveUIActivity) getActivity();
-			//ra.switchContent(fragment);
+                	} 
 		}
 
-
-private void logout_facebook(){
-    // clear any user information
-
-    // find the active session which can only be facebook in my app
-    Session session = Session.getActiveSession();
-    // run the closeAndClearTokenInformation which does the following
-    // DOCS : Closes the local in-memory Session object and clears any persistent 
-    // cache related to the Session.
-    session.closeAndClearTokenInformation();
-    // return the user to the login screen
-    
-    // make sure the user can not access the page after he/she is logged out
-    // clear the activity stack
-    
-}
-	
-
-
+// Método que faz o logout da conta do usuário no aplicativo
+// Mostra uma caixa de diálogo pedindo confirmação
+//Fecha o aplivativo após confirmação e limpa as informações salvas no banco
 
 public void logout(){
 	    	
-    	 AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
+	    	//caixa de dialogo
+    	         AlertDialog.Builder alert = new AlertDialog.Builder(this.getActivity());
 		 alert.setTitle("Deseja  fazer Logout do IPRJapp?");
-		 alert.setMessage("Aten��o! Ao fazer logout do aplicativo, seus dados de Curso e Per�odo ser�o perdidos.");
+		 alert.setMessage("Atenção! Ao fazer logout do aplicativo, seus dados de Curso e Período serão perdidos.");
 
-		 // Set an EditText view to get user input 
-		
+                // inicializando banco de dados
 		 final MySQLiteHelper db = new MySQLiteHelper(this.getActivity());    	 
 		 
-		 //Left_Menu.this.logout_facebook();
-			
+
+		
 		 alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
    		 @Override
 		 public void onClick(DialogInterface dialog, int whichButton) {
    			
    		 db.deleteCurso();
    		 db.deletePeriodo();
-   		 //db.deleteUsuario();
    		 ParsePush.unsubscribeInBackground(channel);
-   		//callFacebookLogout(MainActivity.this);
    		 getActivity().finish();
     			     
    			     }
@@ -386,10 +357,5 @@ public void logout(){
 		
 	}
 	
-	@Override
-	public void onSaveInstanceState(Bundle outState) {
-		super.onSaveInstanceState(outState);
-		//outState.putInt("LeftRes", LeftRes);
-	}
-	
+
 }
