@@ -1,17 +1,31 @@
 package com.iprjappteste.data;
 
+/*
+  * Avisos_Caip.java
+  * Versão: <v2.0>
+  * Data de Criação : 10/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Politécnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Classe responsável pela criação da entidade Avisos_caip no banco de dados
+  * Todos os direitos reservados.
+ */
 
 
 public class Avisos_Caip {
+	
+//*****************Declaração de Variáveis************//
+ 
     public int id;
     public String title;
     public String user;
     public String id_time;
-  
- 
     public Avisos_Caip(){}
+    
+ //Objeto Avisos_Caip
  
-    public Avisos_Caip(String title, String user) {
+public Avisos_Caip(String title, String user) {
+	
         super();
         this.title = title;
         this.id = id;
@@ -27,6 +41,8 @@ public class Avisos_Caip {
         return "Avisos [id=" + id + ", title=" + title +", id_corpo = " + user + "]";
     }
 
+
+//Métodos get e set usados para retornar o valores
 
 	public void setId(int id) {
 		// TODO Auto-generated method stub
@@ -56,7 +72,6 @@ public class Avisos_Caip {
 	public long getId() {
 		// TODO Auto-generated method stub
 		return this.id;
-		
 		
 	}
 	
