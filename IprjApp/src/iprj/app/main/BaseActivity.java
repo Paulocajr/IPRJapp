@@ -10,6 +10,7 @@ package iprj.app.main;
   * Fiz algumas alterações para se adequar ao presente projeto
  */
 
+// Imports
 import iprj.app.main.Util;
 import android.content.Intent;
 import android.os.Bundle;
