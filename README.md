@@ -6,13 +6,40 @@ O projeto é um aplicativo móvel para os alulnos do campus do IRPJ, um utilitá
 
 #Licença
 
-Copyright (C) 2013-2014 Paulo
+Copyright (C) 2013-2014 Paulo Cabral de Oliveira Júnior
+(C) 2013-2015 Universidade do Estado do Rio de Janeiro
+
+#Bibliotecas Usadas
+
+Menu lateral
+https://github.com/jfeinstein10/SlidingMenu
+
+Renderização de PDF
+https://github.com/muennich/mupdf
+
+Push Notifications
+Parse.com
+
+Chat interno
+https://github.com/sinch/android-messaging-tutorial
+
+Facebook SDK
+https://github.com/facebook/facebook-android-sdk
+
+NumberPicker
+https://github.com/SimonVT/android-numberpicker
+
+#Instalação
+
+Baixe o Eclipe junto com o plugin do Android
+
+http://developer.android.com/tools/sdk/eclipse-adt.html
+
+Importe o projeto no eclipse;
+Importe as bibliotecas;
+RUN!
 
 
-                    GNU GENERAL PUBLIC LICENSE
-                       Version 3, 29 June 2007
 
- Copyright (C) 2007 Free Software Foundation, Inc. <http://fsf.org/>
- Everyone is permitted to copy and distribute verbatim copies
- of this license document, but changing it is not allowed.
+ 
 
