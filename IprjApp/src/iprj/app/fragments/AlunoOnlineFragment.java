@@ -1,9 +1,19 @@
 package iprj.app.fragments;
 
+/*
+  * AlunoOnlineFragment.java
+  * Versão: <v2.0>
+  * Data de Criação : 10/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Politécnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Classe responsável pelo framgent que exibe a página do Aluno Online
+  * Todos os direitos reservados.
+ */
+ 
+ //Imports
 import iprj.app.main.R;
-
 import java.util.Calendar;
-
 import android.app.ActionBar;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -22,13 +32,15 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 
 public class AlunoOnlineFragment extends Fragment{
-    
+
+//**********Declaração de Variáveis****************
+
 	Calendar now = Calendar.getInstance();
 	int year = now.get(Calendar.YEAR);
 	String ano = Integer.toString(year) ;
 	public static  WebView webView;
-    public static ListView mDrawerList;
-    public static ProgressBar progress;
+        public static ListView mDrawerList;
+        public static ProgressBar progress;
      
     
     private Handler handler = new Handler(){
@@ -53,26 +65,21 @@ public class AlunoOnlineFragment extends Fragment{
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
   
+       //inflando layout reusável
         View rootView = inflater.inflate(R.layout.fragment_horario, container, false);
+        
         ActionBar actionBar = getActivity().getActionBar();
         
-      //  actionBar.hide();
-        
-        
+        //declarando a webview
         webView = (WebView) rootView.findViewById(R.id.webView1);
         progress = (ProgressBar) rootView.findViewById(R.id.progressBar1);		
 		webView.setWebViewClient(new myWebClient());        
 		WebSettings settings = webView.getSettings();
 	   	settings.setUseWideViewPort(true);
-	    settings.setLoadWithOverviewMode(true);
+	        settings.setLoadWithOverviewMode(true);
 		webView.getSettings().setBuiltInZoomControls(true);
 		webView.loadUrl("https://www.alunoonline.uerj.br/requisicaoaluno/requisicaoacesso.php?requisicao=LoginAlunoOnline");
-		/*webView.setWebViewClient(new WebViewClient() {
-			@Override
-			public boolean shouldOverrideUrlLoading(WebView view, String url) {
-			          view.loadUrl(url);
-			          return true;
-			           }});*/
+	
 		webView.setOnKeyListener(new OnKeyListener(){
 
             public boolean onKey(View v, int keyCode, KeyEvent event) {
@@ -93,8 +100,7 @@ public class AlunoOnlineFragment extends Fragment{
     
     
 	public boolean canGoBack() {
-		
-
+	
 		webView.goBack();
 		// TODO Auto-generated method stub
 		return true;
