@@ -1,5 +1,19 @@
 package iprj.app.main;
 
+
+/*
+  * NoteEdit.java
+  * Versão: <v2.0>
+  * Data de Criação : 10/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Politécnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Classe responsável pela tela de edição do lembrete
+  * Todos os direitos reservados.
+ */
+
+
+// Imports
 import java.util.List;
 import com.iprjappteste.data.Atividade;
 import com.iprjappteste.data.Curso;
@@ -25,6 +39,9 @@ import android.widget.Toast;
 import android.widget.AdapterView.OnItemSelectedListener;
 
 public class NoteEdit extends Activity implements OnItemSelectedListener{
+	
+	
+//*********Declaração de Variáveis****************//	
 
           private EditText TitleText;
           private EditText BodyText;
@@ -61,24 +78,25 @@ public class NoteEdit extends Activity implements OnItemSelectedListener{
         
         
         setContentView(R.layout.note_edit);
-      
+        
+        //inicializando objeto do banco de dados
         db.getWritableDatabase();        
         NoteEdit = this;       
-
+        
+        //inicializnando componentes do layout
         confirmButton = (Button) findViewById(R.id.confirm);
         Button cancelmButton = (Button) findViewById(R.id.cancel);
         
-                       
+        //ação do botão confirmar               
         confirmButton.setOnClickListener(new View.OnClickListener() {
 
             @Override
 			public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                                
-             		          
+               
+                    //chama o método que salva o lembrete
 	            NoteEdit.this.addAtividade();                 
-          	    Intent intent = new Intent();  		   
-          	          	 
+          	    Intent intent = new Intent();
+          	    //volta para a tela principal do app
                     intent.setClass(NoteEdit.this,FragmentChangeActivity.class);
                     startActivity(intent);                        
                     finish();
@@ -92,9 +110,8 @@ public class NoteEdit extends Activity implements OnItemSelectedListener{
 
             @Override
 			public void onClick(View view) {
-                            	
-
-          		   
+                      
+                      //não faz nenhuama ação a não ser voltar a tela principal do app      	
           	      Intent intent = new Intent();         		
            	      intent.setClass(NoteEdit.this,FragmentChangeActivity.class);
                       startActivity(intent);
@@ -106,17 +123,25 @@ public class NoteEdit extends Activity implements OnItemSelectedListener{
     	
     }    
     
-    
-protected void addAtividade_2() {
+//Método resonsável por adicionar o lemnrete
+//pega o dados que o usuário digita nos campos e salva no banco de dados
+
+protected void addAtividade() {
 		
           final MySQLiteHelper db = new MySQLiteHelper(this);
-      	
+          
+         //Cria as EditText para o usuário digitar os textos
     	  TitleText = (EditText) findViewById(R.id.titulo);
           BodyText = (EditText) findViewById(R.id.body);
+          
+          //define tamanho máximo de caracteres que podem ser digitados
           int maxLength = 50; 
     	  int maxLength_1 = 300;
+    	  
     	  TitleText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
   	  BodyText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength_1)})
+  	  
+  	  //pega o texto digitgado converte para string e atribui a variavel text1 e text2
     	  text1 = TitleText.getText().toString();
 	  text2 = BodyText.getText().toString();
 	    			    
@@ -125,7 +150,7 @@ protected void addAtividade_2() {
 	    			     
 	    			  }
 	    			     
-	     else{
+	     else {
 	    			     	 
 	         db.addAtividade(new Atividade(text1,text2));	   		
 	         int listcounter=0;
@@ -141,39 +166,6 @@ protected void addAtividade_2() {
 	    			    
 			}
 
-	
- public void addAtividade() {
-		
-             final MySQLiteHelper db = new MySQLiteHelper(this);
-  	
-              TitleText = (EditText) findViewById(R.id.titulo);
-              BodyText = (EditText) findViewById(R.id.body);
-              int maxLength = 50; 
-              int maxLength_1 = 300;
-              TitleText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength)});
-              BodyText.setFilters(new InputFilter[] {new InputFilter.LengthFilter(maxLength_1)});
-              text1 = TitleText.getText().toString();
-      	      text2 = BodyText.getText().toString();
-      	    			    
-      	    			     
-      	    	 if(text1.equals("")){
-      	    	    }
-      	    			     
-      	    	 else{
-      	    			     	       	    			    	 
-      	    			    	// SetAlarm();
-      	          db.addAtividade(new Atividade(text1,text2));      	   		
-      	          int listcounter=0;
-      	    	  final List<Atividade> atividades = db.getAllAtividades();
-      	          Atividade atv =atividades.get(listcounter);      	   		             	
-      	          text1 = atv.getTitle();      	   		        	     
-      	          Home_Fragment.aviso_caip.setText(text1);
-      	   		      	         
-      	   		                        		    	
-      	   		                 Toast.makeText(getApplicationContext(), "Lembrete salvo!", Toast.LENGTH_SHORT).show();
-      	         	    		     }
-      	    		        }
-    
     public static Context getAppContext(){
         return NoteEdit.getBaseContext();
     }
