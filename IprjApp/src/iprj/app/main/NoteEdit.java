@@ -151,12 +151,14 @@ protected void addAtividade() {
 	    			  }
 	    			     
 	     else {
-	    			     	 
+	    	
+	    	//salva os dados no banco		     	 
 	         db.addAtividade(new Atividade(text1,text2));	   		
 	         int listcounter=0;
 	    	 final List<Atividade> atividades = db.getAllAtividades();
 	         Atividade atv =atividades.get(listcounter);	   		             	
-	         text1 = atv.getTitle();	   		        	     
+	         text1 = atv.getTitle();
+	         //adiciona o texto salvo na tela principal do app
 	         Home_Fragment.aviso_caip.setText(text1);
 	   		      	       	   		      	        
 	   		      	          		        
