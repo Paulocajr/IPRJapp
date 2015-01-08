@@ -6,8 +6,9 @@ O projeto é um aplicativo móvel para os alulnos do campus do IRPJ, um utilitá
 
 #Licença
 
-Copyright (C) 2013-2014 Paulo Cabral de Oliveira Júnior\n
-(C) 2013-2015 Universidade do Estado do Rio de Janeiro
+Copyright (C) 2013-2014 Paulo Cabral de Oliveira Júnior
+
+Copyright (C) 2013-2015 Universidade do Estado do Rio de Janeiro
 
 #Bibliotecas Usadas
 
