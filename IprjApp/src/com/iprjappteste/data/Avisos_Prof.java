@@ -1,16 +1,32 @@
 package com.iprjappteste.data;
 
 
+/*
+  * Avisos_Prof.java
+  * Versão: <v2.0>
+  * Data de Criação : 10/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Politécnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Classe responsável pela criação da entidade Avisos_prof no banco de dados
+  * Todos os direitos reservados.
+ */
+
+
 
 public class Avisos_Prof {
+	
+//******Declaração de Variáveis*************//
+
     public int id;
     public String title;
     public String user;
     public String id_time;
-  
- 
     public Avisos_Prof(){}
- 
+    
+    
+//Objeto Avisos_Prof
+
     public Avisos_Prof(String title, String user) {
         super();
         this.title = title;
@@ -27,7 +43,7 @@ public class Avisos_Prof {
         return "Avisos [id=" + id + ", title=" + title +", id_corpo = " + user + "]";
     }
 
-
+//Métodos get e set usados para retornar o valores
 	public void setId(int id) {
 		// TODO Auto-generated method stub
 		this.id = id;
@@ -56,7 +72,6 @@ public class Avisos_Prof {
 	public long getId() {
 		// TODO Auto-generated method stub
 		return this.id;
-		
 		
 	}
 	
