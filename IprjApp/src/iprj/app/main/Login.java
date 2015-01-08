@@ -143,10 +143,10 @@ public class Login extends Activity  {
                 	nome_per = num_per2+"° periodo";
                 	nome_per2 = nome_per; 
 	         		  	            
-	         		  	            
-	               np.setOnValueChangedListener(new OnValueChangeListener() {
+	         	//retorna o valor mudado no numberpicker	  	            
+	                np.setOnValueChangedListener(new OnValueChangeListener() {
 	                public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-	                    // do something here
+	                   
 	               
 	                	  final int pickedValue = np.getValue();
 	                	  num_per = Integer.toString(pickedValue);
