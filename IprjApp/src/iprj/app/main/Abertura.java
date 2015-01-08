@@ -1,7 +1,16 @@
 package iprj.app.main;
 
-import java.util.List;
+/*
+  * Abertura.java
+  * Versão: <v2.0>
+  * Data de Criação : 01/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Politécnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Todos os direitos reservados.
+ */
 
+import java.util.List;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,20 +25,15 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
-
 import com.facebook.Request;
 import com.facebook.Response;
 import com.facebook.Session;
 import com.facebook.SessionState;
 import com.facebook.android.Facebook;
 import com.facebook.model.GraphUser;
-
 import iprj.app.fragments.FragmentChangeActivity;
 import iprj.app.main.Login;
 import iprj.app.main.Tutorial_1;
-
-
-
 import com.iprjappteste.data.Curso;
 import com.iprjappteste.data.MySQLiteHelper;
 import com.iprjappteste.data.Usuario;
@@ -37,19 +41,18 @@ import com.iprjappteste.data.Usuario;
 
 
 public class Abertura extends Activity{
-
+	
+//*************Variáveis publicas e privadas************//
+	
     private int AberturaRes = -1;
     protected static final String TAG = "Abertura";    
-    public ProgressBar progress; 
-    public String Userid;
-    private static final String APP_ID = "1458439531078582";
-    public String User_name;
-    private Facebook facebook;
+    public ProgressBar progress;   
     private int progressStatus = 0;
-	//private ExamplesAdapter mExamplesAdapter;
-
     private Handler handler = new Handler();
     public MySQLiteHelper db = new MySQLiteHelper(Abertura.this);
+    
+    
+//Início do método onCreate
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -57,16 +60,20 @@ public class Abertura extends Activity{
 	
 	     if (savedInstanceState != null)
 	 		
-	    	 AberturaRes = savedInstanceState.getInt("AberturaRes");
+	AberturaRes = savedInstanceState.getInt("AberturaRes");
 	
+	// request para mostrar tela sem a barra superior
 	requestWindowFeature(Window.FEATURE_NO_TITLE);
-	setContentView(R.layout.abertura);
-	facebook = new Facebook(APP_ID);
+	
+	//setando conteudo do xml que contem o layout da tela
+	setContentView(R.layout.abertura);	
+	
+	//declarando elementos contidos no layout
 	progress = (ProgressBar) findViewById(R.id.progressBar1); 
 	final Button  Button = (Button) findViewById(R.id.button1);
 	
 	
-	   context = this;
+	 context = this;
      sharedPreferences = PreferenceManager
              .getDefaultSharedPreferences(context);
      
@@ -74,47 +81,46 @@ public class Abertura extends Activity{
      switch (checkAppStart()) {
      
      
+     // inicialização normal do app
      case NORMAL:
-         // We don't want to get on the user's nerves
-     	
-      //Button.setVisibility(View.GONE);
+         
          Button.setVisibility(View.GONE);
-         final List<Curso> cursos = db.getAllCursos();         
+         final List<Curso> cursos = db.getAllCursos();        
          	        	         
          new Thread(new Runnable() {
              public void run() {
                 while (progressStatus < 100) {
                    progressStatus += 1;
-            // Update the progress bar and display the 
-                                 //current value in the text view
+            
             handler.post(new Runnable() {
             public void run() {
                progress.setProgress(progressStatus);
               
-            }
+             }
             	            
                 });
             
   	        	            
                 try {
-                   // Sleep for 200 milliseconds. 
-                                 //Just to display the progress slowly
+                 
                    Thread.sleep(50);
                 } catch (InterruptedException e) {
                    e.printStackTrace();
                 }
              }
+                //verifica se o há algum curso cadastrado no banco
                 if(cursos.isEmpty()){
   		    		       
-                	       //Button.setVisibility(View.VISIBLE);
-                	       Intent intent = new Intent();
-		        		   intent.setClass(Abertura.this,Login.class);
-			               startActivity(intent);
-			               finish(); 			                
+                	    //se não há curso inicia a classse de Login
+                	    Intent intent = new Intent();
+		        		intent.setClass(Abertura.this,Login.class);
+			            startActivity(intent);
+			            finish(); 			                
 		    	   }
                 
                 else {
-                
+                       
+                	//se há curso cadastrado vai para tela inicial do app
 		               Intent intent = new Intent();
 	                   intent.setClass(Abertura.this,FragmentChangeActivity.class);
 	        	       startActivity(intent);
@@ -124,9 +130,16 @@ public class Abertura extends Activity{
       	        	     	        	     	       	
  	 
          break;
+         
+     //primeira vez rodando em nova versão    
      case FIRST_TIME_VERSION:
-         // TODO show what's new
+    	 
+    	 // case reservado para mosrar mudanças em novas versões do aplivativo
+    	 
          break;
+         
+     // primeira instalção do aplicativo no dispositivo   
+     // inicia um breve tutorial mostrando funcionalidades    
      case FIRST_TIME:	        	
      	
      Button.setOnClickListener(new View.OnClickListener() {	    		    
@@ -148,56 +161,18 @@ public class Abertura extends Activity{
          break;
      }
 					
-	
-    }
-    
-    
-    public void login_facebook(){
-    	
-    	Session.openActiveSession(this, true, new Session.StatusCallback() {
-
-    	    
-    	    @Override
-    	    public void call(final Session session, SessionState state, Exception exception) {
-    	    	if (session.isOpened()) {
-    	    		  	
-    	    		Request.newMeRequest(session, new Request.GraphUserCallback() {
-
-    	    			  @Override
-    	    			  public void onCompleted(GraphUser user, Response response) {
-    	    				  
-    	    				  if (user != null) {
-    	    					  
-    	    					//welcome = (TextView) findViewById(R.id.welcome);    					
-    	    					Userid = user.getId();
-    	    					User_name= user.getFirstName();
-    	    					   					 		    					
-    	    				
-    	    					}
-    	    			  }
-    	    			}).executeAsync();
-    	    		}
-    	    }
-    	  }); 
-    	
-    }
-    
-	 @Override
-	 public void onActivityResult(int requestCode, int resultCode, Intent data) {		 
-	     super.onActivityResult(requestCode, resultCode, data);
-	     
-	     Session.getActiveSession().onActivityResult(this, requestCode, resultCode, data);
-	 }
+}
+      
 	 /**
-	  * Distinguishes different kinds of app starts: <li>
+	  * Diferencia diferentes modo de inicialização do aplicativo: <li>
 	  * <ul>
-	  * First start ever ({@link #FIRST_TIME})
+	  * Primira instalaçao ({@link #FIRST_TIME})
 	  * </ul>
 	  * <ul>
-	  * First start in this version ({@link #FIRST_TIME_VERSION})
+	  * Primeira inicialização de nova versão ({@link #FIRST_TIME_VERSION})
 	  * </ul>
 	  * <ul>
-	  * Normal app start ({@link #NORMAL})
+	  * Inicialização Normal ({@link #NORMAL})
 	  * </ul>
 	  * 
 	  * @author schnatterer
@@ -208,27 +183,12 @@ public class Abertura extends Activity{
 	 }
 
 
-	 // Note: These variables need to be initialized see below
 	 private Context context;
 	 private SharedPreferences sharedPreferences;
-
-	 /**
-	  * The app version code (not the version name!) that was used on the last
-	  * start of the app.
-	  */
-	 private static final String LAST_APP_VERSION = "1.0";
-
-	 /**
-	  * Caches the result of {@link #checkAppStart()}. To allow idempotent method
-	  * calls.
-	  */
+     private static final String LAST_APP_VERSION = "1.0";	
 	 private static AppStart appStart = null;
 
-	 /**
-	  * Finds out started for the first time (ever or in the current version).
-	  * 
-	  * @return the type of app start
-	  */
+
 	 public AppStart checkAppStart() {
 	     if (appStart == null) {
 	         PackageInfo pInfo;
@@ -237,10 +197,10 @@ public class Abertura extends Activity{
 	                     context.getPackageName(), 0);
 	             int lastVersionCode = sharedPreferences.getInt(
 	                     LAST_APP_VERSION, -1);
-	             // String versionName = pInfo.versionName;
+	           
 	             int currentVersionCode = pInfo.versionCode;
 	             appStart = checkAppStart(currentVersionCode, lastVersionCode);
-	             // Update version in preferences
+	         
 	             sharedPreferences.edit()
 	                     .putInt(LAST_APP_VERSION, currentVersionCode).commit();
 	         } catch (NameNotFoundException e) {
@@ -263,11 +223,8 @@ public class Abertura extends Activity{
 	         return AppStart.NORMAL;
 	     }
 	 }
-	 
-	 
-	
-
-	 @Override
+	  
+	   @Override
 		public void onSaveInstanceState(Bundle outState) {
 			super.onSaveInstanceState(outState);
 			outState.putInt("AberturaRes", AberturaRes);
