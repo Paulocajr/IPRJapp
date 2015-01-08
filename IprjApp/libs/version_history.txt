@@ -1,0 +1,207 @@
+3.5.1
+2/17/2014
+	-fixed issue with transpareny in rubber stamps (again)
+	-modified api to provide hook for the double tap on a selected Annotation event
+	-fixed issue with Annotations when appending pages
+
+3.5
+1/31/2014
+	-added horizontal scrolling
+	-added horizontal view paging
+	-small fix for refreshing when deleting image stamps
+	-fixed bug for rendering bug documents on KitKat
+	-added PageChangeListener interface 
+	-fix for digital signature appearances on rotated documents
+	-updated api for setting custom properties on digital signatures
+	-updated api to improve extensibility of annotation components
+	-fix for using images with transparency in rubber stamps
+	-added resize handles for rubber stamps
+	-added api for exporting specific annotations to FDF
+	
+3.4.0.1
+12/20/2013
+	-fixed a bug for saving documents on KitKat
+
+3.4
+10/22/2013
+	-added api method setCurrentPageFormat
+	-fix for a specific soft mask issue
+	-added api methods for setting page background color
+	-added api methods for setting/getting maximum/minimum zoom
+	-fix for occasional issues with CCITT compression
+	-added ability to set custom background color for pages
+	-slight tweak to RubberStamp interface
+	-fix for creating digital signatures on rotated pages
+	-a variety of additional performance improvements
+	-other bug fixes and improvements
+	
+
+Version 3.3.1
+6/24/2013
+	-fix for indexed jpeg2000 images
+	-text search improvements
+	-improvements to field acroforms
+	
+Version 3.3.0.1
+6/14/2013
+	-fix for indexed jpeg2000 images
+
+Version 3.3
+5/29/2013
+	-official release of previous fix builds
+	-fix for text search bug
+	-fix for occasional view refresh issue
+	-fix for some radial gradients
+	-fix for issue involving programitcally filling acroforms
+	-improvement extensibility of LinkComponents
+	
+Version 3.2
+4/19/2013
+	-official release of previous fix builds
+	-some more fixes involving image stamps
+
+Version 3.1.6
+4/17/2013
+	-some fixes involving image stamps
+
+Version 3.1.5
+4/12/2013
+	-some optimizations for shadings/patterns
+
+Version 3.1.4
+3/09/2013
+	-improved localization
+	-fixed obfucsation of Location enum
+
+Version 3.1.3
+3/06/2013
+	-added handleActions method to QPDFViewerView
+	-fixed an internal bug related to a dialog
+	
+Version 3.1.2
+2/26/2013
+	-fix for encoding issue in bookmark titles
+
+Version 3.1.1
+2/15/2013
+	-fix for issue when empty password is entered for encrypted documents
+
+Version 3.1
+12/21/2012
+	-fix for occasional rendering issue for some image types
+	-fix for adding content to rotated pages
+	-fix for issue relating to Color key masks
+	-rendering fix for some documents containing soft masks
+	-fix for exception introduced in previous build
+	-fix for a rare issue involving annotation's appearance not being generated
+	-fix for positioning of images for digital signature apperance
+	-fix for rendering of some shading types 
+	-fix for modifying signed documents
+	-add support for radial shading
+	
+Version 3.0.1
+11/01/2012
+	-removed some unnecessary classes which caused issues with proguard
+	
+Version 3.0
+10/12/2012
+	-fixes for a variety of patterns and shadings
+	-fixes for softmasks
+	-fixes for concurrently using multiple instances of QPDFNotesView
+	-various minor fixes and improvements
+
+Version 2.4.4_fix
+7/31/2012
+	-fixed issue rendering documents which use text clipping
+
+Version 2.4.4
+7/19/2012
+	-Changed localization to retrieve country code using Locale.getLanguage (previously used Locale.getCountry)
+
+Version 2.4.4
+7/19/2012
+	-Changed localization to retrieve country code using Locale.getLanguage (previously used Locale.getCountry)
+
+Version 2.4.3
+7/12/2012
+	-Fix for a refresh issue that occurs when zooming on some devices
+
+Version 2.4.2
+6/28/2012
+	-Significantly improved rendering speed of some CCITT compressed images
+	-Added support for some pattern types
+	-Support for modification of bookmarks in documents
+	-Fixed issues with some time/date fields
+	-Search toolbar is now accesible with QPDFViewerView.getSearchToolbar()
+	-Fixed issue with typewriter annotations on rotated documents
+	-TextField now includes methods getFormatType and getDateFormat for providing information about special field formats
+	-Added setValue and setValues methods to ListField and ChoiceField
+	-QPDFViewerView now refreshes when pages are deleted programtically using PDFDocument.deletePage()
+	-QPDFViewerView now refreshes when annotations are added or removed programtically 
+	-Various improvements to rendering speed and memory usage
+	
+Version 2.13
+5/04/2012
+	-QPDFNotesView and QPDFViewerView now use a tiled rendering strategy, which gives significant performance improvements
+	-Improved document load time
+	-Added methods getEmbeddedFiles, addEmbeddedFile, removeEmbedded File to PDFDocument, to work with file attachments
+	
+Version 2.12
+3/13/2012
+	-Added ability to set custom properties in SigningInformation
+	
+Version 2.11
+3/2/2012
+	-Added ability to add new signature fields to documents
+	-Added support for PDFRenderHints.setRenderSignatureVerification()
+
+Version 2.10
+3/2/2012
+	-Added digital signature support
+
+Version 2.9 
+3/1/2012
+	-Fixed an issue where annotations were not rendering when pages were exported to images
+	
+Version 2.8 
+2/21/2012
+	-Fixed an issue involving use of the same standard font with different style in the same document
+	
+Version 2.7 (stable release)
+2/17/2012
+	-Optimized rendering of images with separation colorspace
+	-Added Bookmarks API
+	-some minor bug fixes and optimizations
+
+Version 2.6
+1/26/2012
+	-Added FreeText.getFontSize()
+
+Version 2.5
+1/24/2012
+	-Added QPDFNotesView.initAnnotComponent(...) to allow initialization of custom AnnotComponents
+
+Version 2.4
+1/24/2012
+	-Added QPDFViewerView.goToPage(int)
+	-QPDFNotesview.initAnnotComponent can now return null to indicate that now AnnotContextDialog should be displayed
+	-A full SingleTap is now needed to select an Annotation.  This rectifies accidental selection/modification of annotations 
+
+Version 2.3
+1/20/2012
+	-Added TypeWriter interface and corresponding method to AnnotationFactory
+
+Version 2.2
+1/19/2012
+	-Added AnnotComponent parameter to QPDFNotesView.initAnnotContextDialog(...), to indicate the type of Annotation being referred to
+	-Added method AnnotComponent.setFixAspectRatio() to allow AnnotComponents to be forced to keep a fixed aspect ratio
+	-Exposed QPDFViewerView.initScrollViewWrapper() to allow extension of the ScrollViewWrapper class
+
+
+Version 2.1
+1/18/2012
+	
+	-Exposed AnnotPropDialog and its subclasses, to allow customization of these dialogs
+	-Exposed implementations of AnnotDrawingTool, to allow developers to reproduce the behavior of the built in drawing tools
+	-Fixed a bug rendering a specific pdf.
+	

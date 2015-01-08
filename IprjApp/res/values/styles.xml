@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="ExampleTheme" parent="Theme.Sherlock.Light">
+        <item name="homeAsUpIndicator">@drawable/indicator</item>
+        <item name="android:homeAsUpIndicator">@drawable/indicator</item>
+         <item name="numberPickerStyle">@style/NPWidget.Holo.Light.NumberPicker</item>
+    </style>
+
+</resources>

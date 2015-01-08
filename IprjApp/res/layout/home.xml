@@ -1,0 +1,265 @@
+
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#9CC"
+    android:orientation="vertical" >
+    
+       
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent" 
+    android:layout_height="match_parent"
+        android:orientation="vertical" >
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" >
+            
+            
+
+            <ImageView
+                android:id="@+id/quadro2"
+                android:layout_width="fill_parent"
+                android:layout_height="250sp"
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/image_back3"
+                android:gravity="center_horizontal"
+                tools:ignore="ContentDescription" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:maxLength="50"
+                  android:textColor="#666"
+                android:text="Amanhã não haverá reunião do..."
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/quadro2"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="20dp" >
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginRight="25dp"
+                    android:alpha="0" />
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginLeft="20dp"
+                    android:alpha="0"  />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" >
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp" >
+
+            <ImageView
+                android:id="@+id/quadro2"
+                android:layout_width="fill_parent"
+                android:layout_height="250sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/image_back2"
+                tools:ignore="ContentDescription,DuplicateIds" />
+
+    
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/quadro2"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                  android:textColor="#666"
+                android:maxLength="50"
+                android:text="Prova de Cálculo dia 26..."
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/quadro2" >
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="17dp"
+                    android:alpha="0" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentTop="true"
+                    android:alpha="0" />
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
+                    android:alpha="0" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+        
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp" >
+
+            <ImageView
+                android:id="@+id/quadro3"
+                android:layout_width="fill_parent"
+                android:layout_height="250sp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/image_back4"
+                tools:ignore="ContentDescription,DuplicateIds" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignRight="@+id/quadro3" >
+
+                <Button
+                    android:id="@+id/button7"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                     android:layout_marginLeft="20dp"
+                    android:alpha="0" />
+
+                <Button
+                    android:id="@+id/button9"
+                    android:layout_width="80dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                      android:layout_marginRight="25dp"
+                    android:layout_alignParentTop="true"
+                    android:alpha="0" />
+
+                
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/relativeLayout1"
+                android:layout_alignLeft="@+id/quadro3"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentTop="true" >
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:maxLength="50"
+                android:text="Sem novos Avisos"
+                android:textColor="#666"
+                android:textSize="15sp"
+                android:textStyle="italic" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/quadro3"
+                android:layout_marginTop="77dp"
+                android:text=""
+                android:textColor="#666" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_weight="2.85"
+                android:text="Iprj App 2014."
+                android:textSize="10sp" />
+
+        </RelativeLayout>
+      
+            <WebView
+                android:id="@+id/webView1"
+                android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                   android:visibility="gone"
+                android:layout_alignParentRight="true" />
+                <WebView
+                    
+                android:id="@+id/webView2"
+                android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                   android:visibility="gone"
+                android:layout_alignParentRight="true" />
+    </LinearLayout>
+
+</ScrollView>
