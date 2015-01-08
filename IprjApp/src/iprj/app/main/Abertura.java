@@ -7,6 +7,9 @@ package iprj.app.main;
   * Copyright (C) 2014 Paulo cabral
   * Instituto Politécnico do Estado do Rio de Janeiro
   * IPRJ - http://www.iprj.uerj.br
+  * Classe responsável pela tela de Abertura do aplicativo
+  * possui o botão que chama a função de Login com o Facebook.
+  * e também uma progress bar que é usada na inicialização normal do app
   * Todos os direitos reservados.
  */
 
