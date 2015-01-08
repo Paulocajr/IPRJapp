@@ -19,7 +19,7 @@ Renderização de PDF
 https://github.com/muennich/mupdf
 
 Push Notifications
-Parse.com
+https://parse.com/downloads/android/Parse-Starter-Project/latest
 
 Chat interno
 https://github.com/sinch/android-messaging-tutorial
