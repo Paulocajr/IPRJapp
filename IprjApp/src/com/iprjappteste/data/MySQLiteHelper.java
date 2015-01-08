@@ -1,8 +1,22 @@
 package com.iprjappteste.data;
 
+
+/*
+  * MySQLiteHelper.java
+  * Vers√£o: <v2.0>
+  * Data de Cria√ß√£o : 10/09/2014
+  * Copyright (C) 2014 Paulo cabral
+  * Instituto Polit√©cnico do Estado do Rio de Janeiro
+  * IPRJ - http://www.iprj.uerj.br
+  * Classe controladora do Banco de dados
+  * Possui os m√©todos com as Queries que fazem as consultas no banco
+  * Cria as tabelas do Banco
+  * Cria Conex√£o com o banco
+  * Todos os direitos reservados.
+ */
+
 import java.util.LinkedList;
 import java.util.List;
-
 import android.util.Log;
 import android.content.ContentValues;
 import com.iprjappteste.data.Curso;
@@ -13,7 +27,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 public class MySQLiteHelper extends SQLiteOpenHelper {
 	 
-    // Vers„o do Banco de Dados
+    // Vers√£o do Banco de Dados
     private static final int DATABASE_VERSION = 3;
     // Nome do Banco
     private static final String DATABASE_NAME = "IprjApp";
@@ -46,7 +60,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
  
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // SQL para criaÁ„o de tabelas
+        // SQL para cria√ß√£o de tabelas
     	
     	String CREATE_PERIODO_TABLE = "CREATE TABLE periodo ( " +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT , " + 
@@ -97,7 +111,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
     	
-        // Dropando tabelas antigas se j· existirem
+        // Dropando tabelas antigas se j√° existirem
     	
         db.execSQL("DROP TABLE IF EXISTS"+ TABLE_CURSOS);
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_ATIVIDADES);
@@ -116,7 +130,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
        
      Log.d("addCurso", curso.toString()); 
 
-       // 1. obtendo acesso ‡ leitura no Banco
+       // 1. obtendo acesso √† leitura no Banco
        SQLiteDatabase db = this.getWritableDatabase();
 
        // 2. create ContentValues to add key "column"/value
@@ -134,10 +148,10 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
        }
     
     public void addUsuario(Usuario usuario){
-        //for logging
+        
      Log.d("addUsuario", usuario.toString()); 
    
-       // 1. obtendo acesso ‡ leitura no Banco
+       // 1. obtendo acesso √† leitura no Banco
        SQLiteDatabase db = this.getWritableDatabase();
 
        // 2. create ContentValues to add key "column"/value
@@ -180,7 +194,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Periodos periodo = null;
-        // looping through all rows and adding to list
+        
         if (cursor.moveToFirst()) {
             do {
             	periodo = new Periodos();
@@ -196,7 +210,7 @@ public class MySQLiteHelper extends SQLiteOpenHelper {
         }
          
         Log.d("getAllPeriodos()", periodos.toString());
-        // fechando conex„o
+        // fechando conex√£o
        cursor.close();
        db.close();
          
@@ -215,29 +229,26 @@ public List<Usuario>getAllUsuario(){
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         Usuario usuarios = null;
-        // looping through all rows and adding to list
+       
         if (cursor.moveToFirst()) {
             do {
             	usuarios = new Usuario();
             	
-            	//periodos.add(cursor.getString(1));
+            
             	 usuarios.setId(Integer.parseInt(cursor.getString(0)));
 
                  usuarios.setTitle(cursor.getString(1));
                  usuarios.setId_Facebook((cursor.getString(2)));
-                 //periodos.add(cursor.getString(1));
+                
             	 usuario.add(usuarios);
                
-               // curso.setAuthor(cursor.getString(2));
-  
-                // Add book to books
-                //periodos.add(periodo);
+        
                
             } while (cursor.moveToNext());
         }
          
         Log.d("getUsuario()", usuario.toString());
-        // fechando conex„o
+        // fechando conex√£o
        cursor.close();
        db.close();
          
@@ -248,7 +259,7 @@ public List<Usuario>getAllUsuario(){
     
     public Curso getCurso(int id){
     	 
-        // 1.obter acesso ‡ leitura do BD
+        // 1.obter acesso √† leitura do BD
         SQLiteDatabase db = this.getReadableDatabase();
      
         // 2. construindo query
@@ -262,7 +273,6 @@ public List<Usuario>getAllUsuario(){
                 null, // g. order by
                 null); // h. limit
      
-        // 3. if we got results get the first one
         if (cursor != null)
             cursor.moveToFirst();
      
@@ -272,12 +282,11 @@ public List<Usuario>getAllUsuario(){
         
         curso.setId(Integer.parseInt(cursor.getString(0)));
         curso.setTitle(cursor.getString(1));
-       // curso.setAuthor(cursor.getString(2));
-     
+      
         //log 
     Log.d("getCurso("+id+")", curso.toString());
      
-        // 5. return book
+      
         return curso;
     }
     public List<Curso> getAllCursos() {
@@ -286,44 +295,42 @@ public List<Usuario>getAllUsuario(){
         // 1. construindo consulta
         String query = "SELECT  * FROM " + TABLE_CURSOS +  " LIMIT 0, 1";
   
-        // 2. obtendo acesso ‡ leitura no Banco
+        // 2. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
   
-        // 3. go over each row, build book and add it to list
+
         Curso curso = null;
         if (cursor.moveToFirst()) {
             do {
                 curso = new Curso();
                 curso.setId(Integer.parseInt(cursor.getString(0)));
                 curso.setTitle(cursor.getString(1));
-               // curso.setAuthor(cursor.getString(2));
+            
   
-                // Add book to books
                 cursos.add(curso);
             } while (cursor.moveToNext());
         }
   
         Log.d("getAllCursos()", cursos.toString());
   
-        // return books
         return cursos;
     }
     public int updateAtividade(Atividade atividade) {
    	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
      
         // 2. create ContentValues to add key "column"/value
         ContentValues values = new ContentValues();
         values.put("title", atividade.getTitle()); // get title 
-        //values.put("author", curso.getAuthor()); // get author
+      
      
         // 3. atualizando linha
         int i = db.update(TABLE_ATIVIDADES, //table
                 values, // column/value
                 KEY_ID+" = ?", // selections
-                new String[] { String.valueOf(atividade.getId()) }); //selection args
+                new String[] { String.valueOf(atividade.getId()) }); 
      
         // 4. close
         db.close();
@@ -333,14 +340,14 @@ public List<Usuario>getAllUsuario(){
     }
     public int updateCurso(Curso curso) {
     	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
      
         // 2. create ContentValues to add key "column"/value
         
         ContentValues values = new ContentValues();
         values.put("title", curso.getTitle()); // get title 
-        //values.put("author", curso.getAuthor()); // get author
+       
      
         // 3. atualizando linha
         int i = db.update(TABLE_CURSOS, //table
@@ -357,13 +364,12 @@ public List<Usuario>getAllUsuario(){
     
     public void deleteCurso() {
     	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
         db.delete(TABLE_CURSOS,null,null);
-        //db.execSQL(" delete * from " + TABLE_CURSOS);
-        //db.execSQL("delete * from"+ TABLE_NAME);
+    
         // 3. close
         db.close();
  
@@ -374,13 +380,12 @@ public List<Usuario>getAllUsuario(){
 
     public void deletePeriodo() {
    	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
         db.delete(TABLE_PERIODOS,null,null);
-       // db.execSQL(" delete * from " + TABLE_PERIODOS);
-        //db.execSQL("delete * from"+ TABLE_NAME);
+   
         // 3. close
         db.close();
  
@@ -391,26 +396,22 @@ public List<Usuario>getAllUsuario(){
     
     public void deleteUsuario() {
       	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
         db.delete(TABLE_USUARIO,null,null);
-        //db.execSQL(" delete * from " + TABLE_USUARIO);
-        //db.execSQL("delete * from"+ TABLE_NAME);
+     
         // 3. close
         db.close();
- 
-        //log
-   // Log.d("deleteCurso", curso.toString());
- 
+
     }
     
     public void addAtividade(Atividade atividade){
         //for logging
      Log.d("addAtividade", atividade.toString()); 
 
-    // 1. obtendo acesso ‡ leitura no Banco
+    // 1. obtendo acesso √† leitura no Banco
        SQLiteDatabase db = this.getWritableDatabase();
 
        // 2. create ContentValues to add key "column"/value
@@ -433,7 +434,7 @@ public List<Usuario>getAllUsuario(){
         //for logging
      Log.d("addAviso", aviso.toString()); 
 
-    // 1. obtendo acesso ‡ leitura no Banco
+    // 1. obtendo acesso √† leitura no Banco
        SQLiteDatabase db = this.getWritableDatabase();
 
        // 2. create ContentValues to add key "column"/value
@@ -455,7 +456,7 @@ public List<Usuario>getAllUsuario(){
         //for loggingpro
      Log.d("addAviso_Prof", aviso_prof.toString()); 
 
-    // 1. obtendo acesso ‡ leitura no Banco
+    // 1. obtendo acesso √† leitura no Banco
        SQLiteDatabase db = this.getWritableDatabase();
 
        // 2. create ContentValues to add key "column"/value
@@ -475,7 +476,7 @@ public List<Usuario>getAllUsuario(){
     
     public Atividade getAtividade(int id){
     	 
-        // 1.obter acesso ‡ leitura do BD
+        // 1.obter acesso √† leitura do BD
         SQLiteDatabase db = this.getReadableDatabase();
      
         // 2. construindo query
@@ -488,29 +489,27 @@ public List<Usuario>getAllUsuario(){
                 null, // f. having
                 null, // g. order by
                 null); // h. limit
-     
-        // 3. if we got results get the first one
+    
         if (cursor != null)
             cursor.moveToFirst();
      
-        // 4. build book object
+        // 4. objeto atividade
        Atividade atividade = new Atividade();
         
         
         atividade.setId(Integer.parseInt(cursor.getString(0)));
         atividade.setTitle(cursor.getString(1));
-       // curso.setAuthor(cursor.getString(2));
      
         //log 
     Log.d("getAtividade("+id+")", atividade.toString());
      
-        // 5. return book
+     
         return atividade;
     }
     
     public Avisos_Caip getAviso(int id){
    	 
-        // 1.obter acesso ‡ leitura do BD
+        // 1.obter acesso √† leitura do BD
         SQLiteDatabase db = this.getReadableDatabase();
      
         // 2. construindo query
@@ -524,11 +523,11 @@ public List<Usuario>getAllUsuario(){
                 null, // g. order by
                 null); // h. limit
      
-        // 3. if we got results get the first one
+     
         if (cursor != null)
             cursor.moveToFirst();
-     
-        // 4. build book object
+            
+      //Obejto Avisos_caip
        Avisos_Caip aviso = new Avisos_Caip();
         
         
@@ -539,7 +538,7 @@ public List<Usuario>getAllUsuario(){
         //log 
     Log.d("getAviso("+id+")", aviso.toString());
      
-        // 5. return book
+   
         return aviso;
     }
     
@@ -550,7 +549,7 @@ public List<Usuario>getAllUsuario(){
         // 1. construindo consulta
        
         String query = "SELECT * FROM " + TABLE_ATIVIDADES + " WHERE "+KEY_ID+" = (select max("+KEY_ID+") from "+TABLE_ATIVIDADES+")";
-        // 2. obtendo acesso ‡ leitura no Banco
+        // 2. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
   
@@ -570,7 +569,6 @@ public List<Usuario>getAllUsuario(){
   
         Log.d("getAllAtividades()", atividades.toString());
   
-        // return books
         return atividades;
     }
     
@@ -581,11 +579,10 @@ public List<Usuario>getAllUsuario(){
         // 1. construindo consulta
        
         String query = "SELECT * FROM " + TABLE_AVISOS_CAIP + " WHERE "+KEY_ID+" = (select max("+KEY_ID+") from "+TABLE_AVISOS_CAIP+")";
-        // 2. obtendo acesso ‡ leitura no Banco
+        // 2. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(query, null);
   
-        // 3. go over each row, build book and add it to list
         Avisos_Caip aviso = null;
         if (cursor.moveToFirst()) {
             do {
@@ -601,7 +598,7 @@ public List<Usuario>getAllUsuario(){
   
         Log.d("getAllAvisos()", avisos.toString());
   
-        // return books
+     
         return avisos;
     }
     
@@ -613,7 +610,7 @@ public List<Avisos_Prof> getAllAvisos_prof() {
       // 1. construindo consulta
      
       String query = "SELECT * FROM " + TABLE_AVISOS_PROF + " WHERE "+KEY_ID+" = (select max("+KEY_ID+") from "+TABLE_AVISOS_PROF+")";
-      // 2. obtendo acesso ‡ leitura no Banco
+      // 2. obtendo acesso √† leitura no Banco
       SQLiteDatabase db = this.getWritableDatabase();
       Cursor cursor = db.rawQuery(query, null);
 
@@ -633,13 +630,12 @@ public List<Avisos_Prof> getAllAvisos_prof() {
 
       Log.d("getAllAvisos_Prof()", avisos.toString());
 
-      // return books
       return avisos;
   }
   
     public void deleteAtividade(Atividade atividade) {
    	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
@@ -657,7 +653,7 @@ public List<Avisos_Prof> getAllAvisos_prof() {
     
     public void deleteAviso(Avisos_Caip aviso) {
       	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
@@ -676,7 +672,7 @@ public List<Avisos_Prof> getAllAvisos_prof() {
     
     public void deleteAviso_prof(Avisos_Prof aviso_prof) {
       	 
-        // 1. obtendo acesso ‡ leitura no Banco
+        // 1. obtendo acesso √† leitura no Banco
         SQLiteDatabase db = this.getWritableDatabase();
  
         // 2. delete
