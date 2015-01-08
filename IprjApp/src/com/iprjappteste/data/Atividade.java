@@ -37,6 +37,8 @@ public class Atividade {
         return "Atividade [id=" + id + ", title=" + title +", id_corpo = " + id_corpo + "]";
     }
 
+//Métodos get e set usados para retornar o valores
+
 	public void setId(int id) {
 		// TODO Auto-generated method stub
 		this.id = id;
